@@ -14,8 +14,12 @@ app.use(express.urlencoded( { extended : false} ) );
 //static file
 app.use(express.static("public"));
 
+app.get( "/admin", (req, res) =>{
+    res.render("admin");
+});
+
 app.get( "/", (req, res) =>{
-    res.render("login");
+  res.render("login");
 });
 
 app.get( "/signup", (req, res) =>{
@@ -66,6 +70,32 @@ app.post("/login", async (req,res) => {
         console.error(error);
         res.send("Something went wrong!");
       }        
+});
+
+app.post("/admin", async (req,res) => {
+  try{
+      const { username, password } = req.body;
+
+      if (!username || !password) {
+        return res.send("Please enter both username and password!");
+      }
+
+      const user = await collection.findOne({ name: username, isAdmin: true });
+
+      if (!user) {
+        res.send("Wrong details. Check details!");
+      } else {
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if (isPasswordMatch) {
+          res.render("admincontrol");
+        } else {
+          res.send("Wrong details. Check details!");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      res.send("Something went wrong!");
+    }        
 });
 
   app.listen(port, () => {

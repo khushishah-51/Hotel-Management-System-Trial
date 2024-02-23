@@ -14,8 +14,12 @@ const LoginSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        reequired: true
-    }
+        required: true
+    },
+    isAdmin: { 
+        type: Boolean, 
+        default: false 
+    },
 });
 
 //Collection
