@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rooms</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+  <h1>Rooms</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rooms.forEach(room => { %>
+        <tr>
+          <td><%= room.roomNumber %></td>
+          <td><%= room.roomType %></td>
+          <td><%= room.price %></td>
+          <td>
+            <a href="/room/<%= room._id %>">View</a>
+            <a href="/room/<%= room._id %>/edit">Edit</a>
+            <form action="/room/<%= room._id %>" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <a href="/room/new">Add New Room</a>
+</body>
+</html>

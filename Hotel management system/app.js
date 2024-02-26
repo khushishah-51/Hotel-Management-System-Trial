@@ -2,7 +2,9 @@ const express = require("express");
 const path = require('path');
 const bcrypt = require("bcrypt");
 const router = require('./controller/registerController');
-
+const room = require('./routes/roomRoutes')
+//const guest = require('./controller/guestController')
+//const menu = require('./controller/menuController')
 const app = express();
 const port = 5000;
 app.set('view engine', 'ejs');
@@ -10,6 +12,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded( { extended : false} ) );
 app.use(router);
+app.use(room);
 
 //static file
 app.use(express.static("public"));
