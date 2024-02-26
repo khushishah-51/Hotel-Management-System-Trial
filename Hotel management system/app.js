@@ -1,18 +1,30 @@
 const express = require("express");
+const mongoose = require('mongoose');
 const path = require('path');
 const bcrypt = require("bcrypt");
 const router = require('./controller/registerController');
-const room = require('./routes/roomRoutes')
+const room = require('./controller/roomController')
 //const guest = require('./controller/guestController')
 //const menu = require('./controller/menuController')
 const app = express();
 const port = 5000;
+
+
 app.set('view engine', 'ejs');
+
 
 app.use(express.json());
 app.use(express.urlencoded( { extended : false} ) );
 app.use(router);
 app.use(room);
+
+
+const connect = mongoose.connect("mongodb://localhost:27017/login")
+ connect.then(() => {
+  console.log("Database connected successfully");
+  }).catch((err) => {
+    console.error(err);
+  });
 
 //static file
 app.use(express.static("public"));
