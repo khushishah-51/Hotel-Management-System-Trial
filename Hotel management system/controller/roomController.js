@@ -53,14 +53,31 @@ router.put('/admin/room/update/:id', async (req, res) => {
   }
 });
 
-// List rooms
+
+// List rooms with search
 router.get('/admin/room', async (req, res) => {
   try {
-    const rooms = await Room.find();
-    res.render('Room/listRooms', { rooms }); // Assuming you have a view file named listRooms.ejs inside the Room directory
+    let query = {};
+    if (req.query.roomNumber) {
+      query = { roomNumber: req.query.roomNumber };
+    }
+    const rooms = await Room.find(query);
+    res.render('Room/listRooms', { rooms, searchQuery: req.query.roomNumber }); // Pass search query to the view
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
+  }
+});
+
+
+// Delete room form rendering
+router.get('/admin/room/delete/:id', async (req, res) => {
+  try {
+    const room = await Room.findById(req.params.id);
+    res.render('Room/deleteRoom', { room }); // Assuming you have a view file named deleteRoom.ejs inside the Room directory
+  } catch (err) {
+    console.error(err);
+    res.status(404).send('Room not found');
   }
 });
 
@@ -79,6 +96,7 @@ router.delete('/admin/room/delete/:id', async (req, res) => {
     res.status(400).send('Unable to delete this room');
   }
 });
+
 
 // Search room by room number form rendering
 router.get('/admin/room/search', (req, res) => {

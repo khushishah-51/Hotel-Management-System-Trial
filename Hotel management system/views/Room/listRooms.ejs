@@ -3,6 +3,10 @@
 </head>
 <h2>List of Rooms</h2>
   <!-- Displaying list of rooms -->
+  <form action="/admin/room" method="GET">
+    <input type="text" name="roomNumber" placeholder="Search by Room Number" value="<%= searchQuery %>">
+    <button type="submit">Search</button>
+  </form>
 <ul>
   <% rooms.forEach(room => { %>
     <li>
@@ -14,8 +18,7 @@
         <button type="submit">Update</button>
       </form>
       <!-- Delete button -->
-      <form action="/admin/room/delete/<%= room._id %>" method="post" style="display: inline;">
-        <input type="hidden" name="_method" value="DELETE">
+      <form action="/admin/room/delete/<%= room._id %>" method="get" style="display: inline;">
         <button type="submit">Delete</button>
       </form>
     </li>
