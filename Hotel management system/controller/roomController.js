@@ -6,13 +6,22 @@ const methodOverride = require('method-override');
 // method override middleware
 router.use(methodOverride('_method'));
 
+const isAdmin = (req, res, next) => {
+  if (req.session && req.session.isAdmin) {
+    // If session has isAdmin set to true, proceed to next middleware/route handler
+    next();
+  } else {
+    // If not authenticated, redirect or send an error response
+    res.status(403).send('Unauthorized');
+  }
+};
 // Add room form rendering
-router.get('/admin/room/add', (req, res) => {
+router.get('/admin/room/add', isAdmin, (req, res) => {
   res.render('Room/addRoom'); //view file named addRoom.ejs inside the Room directory
 });
 
 // Add room
-router.post('/admin/room/add', async (req, res) => {
+router.post('/admin/room/add', isAdmin, async (req, res) => {
   const newRoom = new Room({
     roomNumber: req.body.roomNumber,
     roomType: req.body.roomType,
@@ -27,7 +36,7 @@ router.post('/admin/room/add', async (req, res) => {
 });
 
 // Update room form rendering
-router.get('/admin/room/update/:id', async (req, res) => {
+router.get('/admin/room/update/:id', isAdmin, async (req, res) => {
   try {
     const room = await Room.findById(req.params.id);
     res.render('Room/updateRoom', { room }); //view file named updateRoom.ejs inside the Room directory
@@ -38,7 +47,7 @@ router.get('/admin/room/update/:id', async (req, res) => {
 });
 
 // Update room
-router.put('/admin/room/update/:id', async (req, res) => {
+router.put('/admin/room/update/:id', isAdmin, async (req, res) => {
   try {
     const updatedRoom = await Room.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (updatedRoom) {
@@ -54,7 +63,7 @@ router.put('/admin/room/update/:id', async (req, res) => {
 
 
 // List rooms with search
-router.get('/admin/room', async (req, res) => {
+router.get('/admin/room', isAdmin, async (req, res) => {
   try {
     let query = {};
     if (req.query.roomNumber) {
@@ -70,7 +79,7 @@ router.get('/admin/room', async (req, res) => {
 
 
 // Delete room form rendering
-router.get('/admin/room/delete/:id', async (req, res) => {
+router.get('/admin/room/delete/:id', isAdmin, async (req, res) => {
   try {
     const room = await Room.findById(req.params.id);
     res.render('Room/deleteRoom', { room }); //view file named deleteRoom.ejs inside the Room directory
@@ -81,7 +90,7 @@ router.get('/admin/room/delete/:id', async (req, res) => {
 });
 
 // Delete room
-router.delete('/admin/room/delete/:id', async (req, res) => {
+router.delete('/admin/room/delete/:id', isAdmin, async (req, res) => {
   try {
     const deletedRoom = await Room.findByIdAndDelete(req.params.id);
     if (deletedRoom) {
@@ -96,4 +105,5 @@ router.delete('/admin/room/delete/:id', async (req, res) => {
 });
 
 module.exports = router;
+
 
