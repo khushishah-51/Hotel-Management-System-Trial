@@ -97,26 +97,5 @@ router.delete('/admin/room/delete/:id', async (req, res) => {
   }
 });
 
-
-// Search room by room number form rendering
-router.get('/admin/room/search', (req, res) => {
-  res.render('Room/searchRoom'); // Assuming you have a view file named searchRoom.ejs inside the Room directory
-});
-
-// Search room by room number
-router.get('/admin/room/search/:roomNumber', async (req, res) => {
-  try {
-    const room = await Room.findOne({ roomNumber: req.params.roomNumber });
-    if (room) {
-      res.render('Room/showRoom', { room }); // Assuming you have a view file named showRoom.ejs inside the Room directory
-    } else {
-      res.status(404).send('Room not found');
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
 module.exports = router;
 
