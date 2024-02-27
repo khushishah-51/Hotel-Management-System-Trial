@@ -26,8 +26,14 @@ const connect = mongoose.connect("mongodb://localhost:27017/login")
     console.error(err);
   });
 
-//static file
-app.use(express.static("public"));
+// Serve static files from the "public" directory
+app.use(express.static("public", { 
+  setHeaders: (res, path, stat) => {
+    if (path.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    }
+  }
+}));
 
 app.get( "/admin", (req, res) =>{
     res.render("admin");

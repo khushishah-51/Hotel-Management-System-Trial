@@ -9,17 +9,14 @@ router.get('/admin/room/add', (req, res) => {
 
 // Add room
 router.post('/admin/room/add', async (req, res) => {
-  console.log("khushi")
   const newRoom = new Room({
     roomNumber: req.body.roomNumber,
     roomType: req.body.roomType,
     price: req.body.price
   });
   try {
-    console.log("khushi1")
     const savedRoom = await newRoom.save();
     //res.redirect('/admin/room'); // Redirect to the list of rooms after adding
-    console.log("khushi2") 
   } catch (err) {
     res.status(400).send('Unable to add this room');
   }
