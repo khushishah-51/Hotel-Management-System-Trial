@@ -1,0 +1,25 @@
+/* CSS styles for deleteRoom.ejs */
+form {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  button[type="submit"] {
+    padding: 8px 20px;
+    background-color: #FF5733; /* Red color for delete button */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #D9534F; /* Darker red color on hover */
+  }
+  

@@ -1,11 +1,24 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/Room/style_listRooms.css">
 </head>
-
-<!-- Displaying list of rooms -->
+<h2>List of Rooms</h2>
+  <!-- Displaying list of rooms -->
 <ul>
-    <% rooms.forEach(room => { %>
-      <li><%= room.roomNumber %> - <%= room.roomType %> - <%= room.price %></li>
-    <% }); %>
-  </ul>
-  
+  <% rooms.forEach(room => { %>
+    <li>
+      <p>Room Number: <%= room.roomNumber %></p>
+      <p>Room Type: <%= room.roomType %></p>
+      <p>Price: <%= room.price %></p>
+      <!-- Update button -->
+      <form action="/admin/room/update/<%= room._id %>" method="get" style="display: inline;">
+        <button type="submit">Update</button>
+      </form>
+      <!-- Delete button -->
+      <form action="/admin/room/delete/<%= room._id %>" method="post" style="display: inline;">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit">Delete</button>
+      </form>
+    </li>
+  <% }); %>
+</ul>
+

@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Room = require('../model/room');
+const methodOverride = require('method-override');
+
+// method override middleware
+router.use(methodOverride('_method'));
 
 // Add room form rendering
 router.get('/admin/room/add', (req, res) => {
@@ -37,6 +41,7 @@ router.get('/admin/room/update/:id', async (req, res) => {
 router.put('/admin/room/update/:id', async (req, res) => {
   try {
     const updatedRoom = await Room.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    console.log(req.params.id)
     if (updatedRoom) {
       res.redirect('/admin/room'); // Redirect to the list of rooms after updating
     } else {
@@ -63,6 +68,7 @@ router.get('/admin/room', async (req, res) => {
 router.delete('/admin/room/delete/:id', async (req, res) => {
   try {
     const deletedRoom = await Room.findByIdAndDelete(req.params.id);
+    console.log(req.params.id)
     if (deletedRoom) {
       res.redirect('/admin/room'); // Redirect to the list of rooms after deletion
     } else {

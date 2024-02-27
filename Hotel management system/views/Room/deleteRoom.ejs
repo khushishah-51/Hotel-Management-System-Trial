@@ -1,0 +1,11 @@
+<!-- deleteRoom.ejs -->
+<head>
+    <link rel="stylesheet" type="text/css" href="/Room/style_deleteRoom.css">
+  </head>
+  <!-- HTML form for deleting a room -->
+  <form action="/admin/room/delete/<%= room._id %>?_method=DELETE" method="post">
+      <h2>Delete Room</h2>
+      <p>Are you sure you want to delete room <%= room.roomNumber %>?</p>
+      <button type="submit">Delete Room</button>
+  </form>
+  
