@@ -49,11 +49,6 @@
     background-color: #f2f2f2;
   }
   
-  /* .add-room-button {
-    background-color: #f44336;
-  }
-   */
-
   .add-room-button {
     background-color: #31a535;
   } 
@@ -61,4 +56,3 @@
   .add-room-button:hover {
     background-color: #3c9e33;
   }
-  

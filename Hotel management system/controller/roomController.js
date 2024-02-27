@@ -8,7 +8,7 @@ router.use(methodOverride('_method'));
 
 // Add room form rendering
 router.get('/admin/room/add', (req, res) => {
-  res.render('Room/addRoom'); // Assuming you have a view file named addRoom.ejs inside the Room directory
+  res.render('Room/addRoom'); //view file named addRoom.ejs inside the Room directory
 });
 
 // Add room
@@ -20,7 +20,7 @@ router.post('/admin/room/add', async (req, res) => {
   });
   try {
     const savedRoom = await newRoom.save();
-    //res.redirect('/admin/room'); // Redirect to the list of rooms after adding
+    res.redirect('/admin/room'); // Redirect to the list of rooms after adding
   } catch (err) {
     res.status(400).send('Unable to add this room');
   }
@@ -30,7 +30,7 @@ router.post('/admin/room/add', async (req, res) => {
 router.get('/admin/room/update/:id', async (req, res) => {
   try {
     const room = await Room.findById(req.params.id);
-    res.render('Room/updateRoom', { room }); // Assuming you have a view file named updateRoom.ejs inside the Room directory
+    res.render('Room/updateRoom', { room }); //view file named updateRoom.ejs inside the Room directory
   } catch (err) {
     console.error(err);
     res.status(404).send('Room not found');
@@ -41,7 +41,6 @@ router.get('/admin/room/update/:id', async (req, res) => {
 router.put('/admin/room/update/:id', async (req, res) => {
   try {
     const updatedRoom = await Room.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    console.log(req.params.id)
     if (updatedRoom) {
       res.redirect('/admin/room'); // Redirect to the list of rooms after updating
     } else {
@@ -74,7 +73,7 @@ router.get('/admin/room', async (req, res) => {
 router.get('/admin/room/delete/:id', async (req, res) => {
   try {
     const room = await Room.findById(req.params.id);
-    res.render('Room/deleteRoom', { room }); // Assuming you have a view file named deleteRoom.ejs inside the Room directory
+    res.render('Room/deleteRoom', { room }); //view file named deleteRoom.ejs inside the Room directory
   } catch (err) {
     console.error(err);
     res.status(404).send('Room not found');
@@ -85,7 +84,6 @@ router.get('/admin/room/delete/:id', async (req, res) => {
 router.delete('/admin/room/delete/:id', async (req, res) => {
   try {
     const deletedRoom = await Room.findByIdAndDelete(req.params.id);
-    console.log(req.params.id)
     if (deletedRoom) {
       res.redirect('/admin/room'); // Redirect to the list of rooms after deletion
     } else {
