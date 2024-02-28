@@ -6,7 +6,7 @@
 <body>
   <h2>List of Guests</h2>
   <form action="/admin/guest" method="GET">
-    <input type="text" name="roomNumber" placeholder="Search by Room Number" value="<%= searchQuery %>">
+    <input type="text" name="guestName" placeholder="Search by Guest Name" value="<%= searchQuery %>">
     <button type="submit">Search</button>
   </form>
   <form action="/admin/guest/add" method="get">
