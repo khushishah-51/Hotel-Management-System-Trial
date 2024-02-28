@@ -4,9 +4,9 @@ const path = require('path');
 const bcrypt = require("bcrypt");
 const session = require('express-session');
 const router = require('./controller/registerController');
-const room = require('./controller/roomController')
-const guest = require('./controller/guestController')
-const menu = require('./controller/menuController')
+const room = require('./route/roomRoute')
+const guest = require('./route/guestRoute')
+const menu = require('./route/menuRoute')
 const user = require('./controller/userController')
 
 
