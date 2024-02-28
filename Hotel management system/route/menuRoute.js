@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const menuController = require('../controller/menuController');
 const isAdmin = require('../Middleware/isAdmin');
+const methodOverride = require('method-override');
+
+// method override middleware
+router.use(methodOverride('_method'));
 
 router.get('/admin/menu/add', isAdmin, menuController.addMenuForm);
 router.post('/admin/menu/add', isAdmin, menuController.addMenu);

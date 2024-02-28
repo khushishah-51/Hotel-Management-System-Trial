@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const roomController = require('../controller/roomController');
 const isAdmin = require('../Middleware/isAdmin');
+const methodOverride = require('method-override');
+
+// method override middleware
+router.use(methodOverride('_method'));
 
 router.get('/admin/room/add', isAdmin, roomController.addRoomForm);
 router.post('/admin/room/add', isAdmin, roomController.addRoom);
