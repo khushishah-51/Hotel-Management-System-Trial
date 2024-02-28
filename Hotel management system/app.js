@@ -6,7 +6,7 @@ const session = require('express-session');
 const router = require('./controller/registerController');
 const room = require('./controller/roomController')
 //const guest = require('./controller/guestController')
-//const menu = require('./controller/menuController')
+const menu = require('./controller/menuController')
 const app = express();
 const port = 5000;
 
@@ -34,6 +34,7 @@ const isAdmin = (req, res, next) => {
 };
 app.use(router);
 app.use(room);
+app.use(menu);
 
 
 const connect = mongoose.connect("mongodb://localhost:27017/login")
