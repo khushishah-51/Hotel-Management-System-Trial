@@ -7,7 +7,7 @@ const router = require('./route/registerRoute');
 const room = require('./route/roomRoute')
 const guest = require('./route/guestRoute')
 const menu = require('./route/menuRoute')
-const user = require('./controller/userController')
+const user = require('./route/userRoute')
 
 
 const app = express();
