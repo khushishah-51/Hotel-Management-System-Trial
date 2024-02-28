@@ -1,27 +1,8 @@
 const express = require("express");
 const bcrypt = require('bcrypt');
-const session = require('express-session');
-const app = express();
 const collection = require("../model/register");
 const router = express.Router();
 
-// Configure express-session middleware
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}));
-
-// Middleware to check admin authentication
-const isAdmin = (req, res, next) => {
-  if (req.session && req.session.isAdmin) {
-    // If session has isAdmin set to true, proceed to next middleware/route handler
-    next();
-  } else {
-    // If not authenticated, redirect or send an error response
-    res.status(403).send('Unauthorized');
-  }
-};
 // Add a function to validate username
 function validateUsername(username) {
   // Username should be at least 5 characters long
@@ -76,7 +57,7 @@ router.post("/", async (req,res) => {
        //compare the hash password from the database with plaintext
        const isPasswordMatch= await bcrypt.compare(password ,user.password);
        if(isPasswordMatch) {
-         res.render("home")
+         res.render("user")
        }else{
          res.send("wrong password!");
        }

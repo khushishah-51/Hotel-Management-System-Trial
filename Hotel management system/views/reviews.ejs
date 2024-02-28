@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Reviews</title>
+    <link rel="stylesheet" href="/reviewstyle.css" />
+</head>
+<body>
+    <form action="/" method="get">
+        <button type="submit" class="add-room-button">Add Reviews</button>
+    </form>
+    <h1>All Reviews</h1>
+    <ul>
+        <% reviews.forEach(review => { %>
+            <li>
+                <h3>Name:  <%= review.name %></h3>
+                <p>Review:  <%= review.review %></p>
+                <p>Rating:  <%= review.rating %></p>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

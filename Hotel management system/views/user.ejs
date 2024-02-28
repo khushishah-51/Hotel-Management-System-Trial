@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User</title>
+  <link rel="stylesheet" href="/userstyle.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Add Review</h1>
+    <div class="form-container">
+      <form action="/userfeed" method="POST">
+        <label for="title">Name:</label><br>
+        <input type="text" id="title" name="name" placeholder="Enter your Name" required><br>
+        <label for="content">Review:</label><br>
+        <textarea id="content" name="review" placeholder="Enter your Review" required></textarea><br>
+        <label for="rating">Rating:</label><br>
+        <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="reviews">
+      <!-- Reviews will be displayed here -->
+    </div>
+    <!-- <button>Add another Review</button> -->
+  </div>
+</body>
+</html>
