@@ -4,33 +4,31 @@
   <link rel="stylesheet" type="text/css" href="/adminControl/style_list.css">
 </head>
 <body>
-  <h2>List of Rooms</h2>
-  <form action="/admin/room" method="GET">
+  <h2>List of Guests</h2>
+  <form action="/admin/guest" method="GET">
     <input type="text" name="roomNumber" placeholder="Search by Room Number" value="<%= searchQuery %>">
     <button type="submit">Search</button>
   </form>
-  <form action="/admin/room/add" method="get">
-    <button type="submit" class="add-room-button">Add Room</button>
+  <form action="/admin/guest/add" method="get">
+    <button type="submit" class="add-guest-button">Add Guest</button>
   </form>
     <table>
       <tr>
         <th>Room Number</th>
-        <th>Room Type</th>
-        <th>Price</th>
+        <th>Guest Name</th>
         <th>Actions</th>
       </tr>
-      <% rooms.forEach(room => { %>
+      <% guests.forEach(guest => { %>
         <tr>
-          <td><%= room.roomNumber %></td>
-          <td><%= room.roomType %></td>
-          <td><%= room.price %></td>
+          <td><%= guest.roomNumber %></td>
+          <td><%= guest.guestName %></td>
           <td>
             <!-- Update button -->
-            <form action="/admin/room/update/<%= room._id %>" method="get" style="display: inline;">
+            <form action="/admin/guest/update/<%= guest._id %>" method="get" style="display: inline;">
               <button type="submit">Update</button>
             </form>
             <!-- Delete button -->
-            <form action="/admin/room/delete/<%= room._id %>" method="get" style="display: inline;">
+            <form action="/admin/guest/delete/<%= guest._id %>" method="get" style="display: inline;">
               <button type="submit">Delete</button>
             </form>
           </td>

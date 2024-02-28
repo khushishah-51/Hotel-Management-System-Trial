@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/adminControl/style_list.css">
+</head>
+<body>
+  <h2>Menu</h2>
+  <form action="/admin/menu" method="GET">
+    <input type="text" name="menuName" placeholder="Search by dish Name" value="<%= searchQuery %>">
+    <button type="submit">Search</button>
+  </form>
+  <form action="/admin/menu/add" method="get">
+    <button type="submit" class="add-menu-button">Add Dish</button>
+  </form>
+    <table>
+      <tr>
+        <th>Menu Name</th>
+        <th>Menu Description</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+      <% menus.forEach(menu => { %>
+        <tr>
+          <td><%= menu.menuName %></td>
+          <td><%= menu.menuDescription %></td>
+          <td><%= menu.price %></td>
+          <td>
+            <!-- Update button -->
+            <form action="/admin/menu/update/<%= menu._id %>" method="get" style="display: inline;">
+              <button type="submit">Update</button>
+            </form>
+            <!-- Delete button -->
+            <form action="/admin/menu/delete/<%= menu._id %>" method="get" style="display: inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </table>
+</body>
+</html>

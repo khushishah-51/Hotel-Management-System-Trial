@@ -1,0 +1,9 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/adminControl/style_add.css">
+  </head>
+  <!-- HTML form for updating guest info-->
+  <form action="/admin/guest/update/<%= guest._id %>?_method=PUT" method="post">
+      <input type="text" name="roomNumber" value="<%= guest.roomNumber %>">
+      <input type="text" name="guestName" value="<%= guest.guestName %>">
+      <button type="submit">Update Guest info</button>
+    </form>

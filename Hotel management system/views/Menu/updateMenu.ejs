@@ -1,0 +1,10 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/adminControl/style_add.css">
+  </head>
+  <!-- HTML form for updating a menu -->
+  <form action="/admin/menu/update/<%= menu._id %>?_method=PUT" method="post">
+      <input type="text" name="menuName" value="<%= menu.menuName%>">
+      <input type="text" name="menuDescription" value="<%= menu.menuDescription %>">
+      <input type="text" name="price" value="<%= menu.price %>">
+      <button type="submit">Update Menu</button>
+    </form>

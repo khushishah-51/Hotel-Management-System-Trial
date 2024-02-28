@@ -1,0 +1,10 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/adminControl/style_delete.css">
+</head>
+<!-- HTML form for deleting a room -->
+<form action="/admin/guest/delete/<%= guest._id %>?_method=DELETE" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <h2>Delete Guests in Room</h2>
+    <p>Are you sure you want to delete this Guest from room <%= guest.roomNumber %>?</p>
+    <button type="submit">Delete Guest</button>
+</form>
