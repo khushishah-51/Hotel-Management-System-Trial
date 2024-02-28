@@ -15,7 +15,8 @@ function validatePassword(password) {
   return typeof password === 'string' && password.trim().length >= 5;
 }
 
-router.post("/signup", async (req,res) => {
+ 
+exports.signupForm  = async (req,res) => {
      
     const data = {
      name: req.body.username,
@@ -36,9 +37,10 @@ router.post("/signup", async (req,res) => {
        const userdata = await collection.insertMany(data);
        console.log(userdata);
     } 
-});
+};
 
-router.post("/", async (req,res) => {
+
+exports.loginForm = async (req,res) => {
    try{
        const { username, password } = req.body;
 
@@ -65,9 +67,10 @@ router.post("/", async (req,res) => {
        console.error(error);
        res.send("Something went wrong!");
      }        
-});
+};
 
-router.post("/admin", async (req,res) => {
+
+exports.adminForm = async (req,res) => {
  try{
      const { username, password } = req.body;
 
@@ -97,6 +100,6 @@ router.post("/admin", async (req,res) => {
      console.error(error);
      res.send("Something went wrong!");
    }        
-});
+};
 
-module.exports = router;
+//module.exports = router;

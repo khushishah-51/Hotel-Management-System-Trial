@@ -3,7 +3,7 @@ const router = express.Router();
 const Review = require('../model/user');
 
 // Handle adding a review
-router.post('/userfeed', async (req, res) => {
+exports.allReview = async (req, res) => {
   try {
     // Extract review details from the request body
     const { name, review, rating } = req.body;
@@ -27,6 +27,6 @@ router.post('/userfeed', async (req, res) => {
     console.error('Error adding review:', err);
     res.status(500).json({ error: 'Error adding review' });
   }
-});
+};
 
 module.exports = router;
