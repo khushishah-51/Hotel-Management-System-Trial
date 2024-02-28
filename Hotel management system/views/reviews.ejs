@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Reviews</title>
+    <title>Reviews from other Guests</title>
     <link rel="stylesheet" href="/reviewstyle.css" />
 </head>
 <body>
     <form action="/userfeed" method="get">
         <button type="submit" class="add-room-button">Add Another Review</button>
     </form>
-    <h1>All Reviews</h1>
+    <h1>Reviews from other Guests</h1>
     <ul>
         <% reviews.forEach(review => { %>
             <li>
