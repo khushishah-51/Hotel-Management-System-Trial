@@ -1,5 +1,4 @@
 
-
 # Hotel Management System
 
 This is a Node.js project using Express for web development, Express-session for authentication, and MongoDB for database management.
